@@ -1,0 +1,221 @@
+#todoapp h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 0 10px 0;
+}
+
+#todoapp input {
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#todoapp .box {
+  margin-top: 10px;
+}
+
+#todoapp .item_list dt {
+  font-size: 24px;
+}
+
+#todoapp .item_list dt input {
+  width: 100%;
+  font-size: 24px;
+  box-sizing: border-box;
+}
+
+#todoapp .item_list dd {
+  margin-top: 12px;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+#todoapp .item_list dd input {
+  font-size: 13px;
+  width: 7em;
+}
+
+#todoapp .item_list dd span {
+  display: inline-block;
+  padding: 0 1em;
+}
+
+#todoapp .item_list dd .item_schedule {
+  display: inline-block;
+}
+
+#todoapp .item_list dd .button {
+  float: right;
+  display: inline-block;
+  width: 220px;
+  height: 30px;
+  background: #eee;
+  border: none;
+  border-radius: 5px;
+}
+
+#todoapp form input[type="text"], #todoapp form input[type="password"] {
+  line-height: 1.4em;
+  border: 0;
+  outline: none;
+  padding: 6px;
+  border-bottom: 1px solid #999999;
+}
+
+#todoapp form input[type="text"]::-webkit-input-placeholder, #todoapp form input[type="password"]::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+#todoapp footer {
+  display: none;
+  margin: 0 -20px -20px -20px;
+  overflow: hidden;
+  color: #555555;
+  background: #f4fce8;
+  border-top: 1px solid #ededed;
+  padding: 0 20px;
+  line-height: 37px;
+  border-radius: 0 0 5px 5px;
+}
+
+#main {
+  display: none;
+  margin-top: 30px;
+}
+
+#todo-list {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#todo-list li {
+  margin: 0 -20px;
+  padding: 18px 50px 18px 0;
+  position: relative;
+  font-size: 24px;
+  border-top: 1px solid #ccc;
+}
+
+#todo-list li.done {
+  background: #eee;
+}
+
+#todo-list li.done .area_view {
+  color: #777777;
+  text-decoration: line-through;
+}
+
+#todo-list li .toggle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+  margin: auto;
+}
+
+#todo-list li .area {
+  display: block;
+  width: 100%;
+  padding-left: 50px;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+#todo-list li .area dd {
+  color: #333;
+}
+
+#todo-list li .area_edit {
+  display: none;
+}
+
+#todo-list li.editing {
+  padding: 11px 50px 18px 0;
+}
+
+#todo-list li.editing .area {
+  padding-left: 48px;
+}
+
+#todo-list li.editing .area_edit {
+  display: block;
+}
+
+#todo-list li.editing .area_edit dt input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#todo-list li.editing .area_edit dd {
+  margin-top: 5px;
+}
+
+#todo-list li.editing .area_edit dd input {
+  width: 5.5em;
+}
+
+#todo-list li.editing .area_edit dd span {
+  margin: 0 -2px 0 -0.5px;
+  padding: 0 1em 0 0.5em;
+}
+
+#todo-list li.editing .area_view {
+  display: none;
+}
+
+#todo-list li:hover {
+  background: #f4fce8;
+}
+
+#todo-list li:hover .destroy {
+  display: block;
+}
+
+#todo-list .destroy {
+  position: absolute;
+  right: 30px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background: url(../img/destroy.png) no-repeat;
+}
+
+#todo-list .destroy:hover {
+  background-position: 0 -20px;
+}
+
+#clear-completed {
+  float: right;
+  line-height: 20px;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.1);
+  color: #555555;
+  font-size: 11px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 0 10px 1px;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
+}
+
+#clear-completed:hover {
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
+}
+
+#clear-completed:active {
+  position: relative;
+  top: 1px;
+}
+
+#todo-count span {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=todos.css.map */

@@ -1,0 +1,39 @@
+@import "../_base/var";
+
+
+#app-simbol {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  background: url(../img/app-symbol.svg);
+  background-size: 100% 100%;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: $nav_size;
+  height: 100%;
+  background: $bg_color;
+  ul {
+    // display: -webkit-box;
+  }
+  li {
+    list-style: none;
+    a {
+      display: block;
+      padding: 20px;
+      // border-bottom: 2px solid #ccc;
+      color: #333333;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      &.active {
+        background: #54c0eb;
+        color: #ffffff;
+      }
+    }
+  }
+}

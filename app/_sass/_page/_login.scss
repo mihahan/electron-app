@@ -1,0 +1,50 @@
+
+@import "../_base/var";
+
+
+#login-page {
+  padding-left: 0;
+   nav {
+    display: none;
+  }
+}
+
+#login_wrap {
+  width: 250px;
+  margin: 100px auto 0;
+  h1 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+#login {
+  width: 250px;
+  margin: 0 auto;
+  padding: 20px;
+  background: $bg_color_light;
+  .form-item {
+    display: block;
+    margin-top: 10px;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-top: 20px;
+    }
+    input {
+      width: 100%;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+    }
+  }
+  .error {
+    display: none;
+    margin-top: 10px;
+    text-align: center;
+    color: $font_color_error;
+  }
+}

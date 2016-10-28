@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="readUs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>JIRA Tools</title>
+<link rel="stylesheet" href="bower_components/sanitize-css/sanitize.css" />
+<link rel="stylesheet" href="css/main.css"/>
+</head>
+
+<body id="login-page">
+  <div id="contents-load"></div>
+
+  <div id="login_wrap" style="display: none;">
+    <h1>Login to JIRA</h1>
+    <div id="login">
+      <form>
+        <label class="form-item"><input type="text" id="jira-username" placeholder="INTRA User Account"></label>
+        <label class="form-item"><input type="password" id="jira-password" placeholder="INTRA Password"></label>
+        <div class="error" id="error">Invalid Account or password.</div>
+        <div class="form-item"><button id="submit" class="button" type="submit">Login</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script src="js/lib/jquery.js"></script>
+  <script src="js/lib/moment.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/login.js"></script>
+
+  </body>
+</html>

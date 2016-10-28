@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html ng-app="readUs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>JIRA Tools</title>
+<link rel="stylesheet" href="bower_components/sanitize-css/sanitize.css" />
+<link rel="stylesheet" href="css/main.css"/>
+
+</head>
+<body>
+
+  <nav>
+    <div id="app-simbol"></div>
+    <ul>
+      <li><a href="#view_get" class="active">My Task</a></li>
+      <li><a href="#view_report">Dairy Reort</a></li>
+      <li><a href="#view_report">Dairy Reort</a></li>
+      <li><a href="#view_report">Dairy Reort</a></li>
+    </ul>
+    <div><a href="login.html" id="refresh">Refresh</a></div>
+  </nav>
+
+
+  <section id="view_get">
+    <div id="contents-load2"></div>
+    <div id="contents-error" style="display: none;">
+      errorです。
+    </div>
+    <!-- <div id="input" style="display: none;" ng-controller="MainController as main"> -->
+    <div id="input" ng-controller="MainController as main">
+      <table class="data_table" id="table-head">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Spent Time</th>
+            <th>Comment</th>
+            <th>Submit</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+      </table>
+      <form ng-repeat="(key, value) in main.jira.issues">
+        <table class="data_table">
+          <tr>
+            <td>
+              <a href="https://jira.rakuten-it.com/jira/browse/{{value.key}}" onclick="openLink(this); return false;">{{value.fields.summary}}</a><br>
+              {{value.fields.reporter.name}} :
+              {{value.fields.customfield_12005}} 〜 {{value.fields.customfield_12005}}
+            </td>
+            <td><input type="text" placeholder="3.5h" name="{{value.key}}-time"></td>
+            <td><input type="text" placeholder="Design, modify etc" name="{{value.key}}-comment"></td>
+            <td><button class="btn-submit" data-key="{{value.key}}" onclick="postTimeSpent(this);"><span class="text">送信</span></button></td>
+            <td>{{value.fields.status.name}}</td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </section>
+
+
+
+  <section id="view_report" style="display: none;">
+    <div id="contents-load"></div>
+    <div id="contents-error" style="display: none;">
+      errorです。
+    </div>
+    <div id="contents-report" style="display: none;" ng-controller="MainController2 as main2">
+      お疲れ様です。{{name}}です。<br>
+      本日の業務について報告いたします。
+
+      <h2>[Impression]</h2>
+      <div>
+        <textarea placeholder="所感を記述"></textarea>
+      </div>
+
+
+      <h2>[Today's overtime] (from 17:30:00)</h2>
+      <div>
+        <div>00:00:00</div>
+      </div>
+
+      <h2>[Overtime in this month] ({{year}}/{{month}})</h2>
+        <div>0:00:00 / 30:00:00</div>
+
+      <h2>[Possible overtime in this month] ({{year}}/{{month}})</h2>
+      <div>30:00:00</div>
+
+      <h2>[Average of possible overtime per day]</h2>
+      <div ng-bind="averagePosiOvertime"></div>
+
+      <h2>[Workday in this month]</h2>
+      <div ng-bind="workday"></div>
+
+      <h2>[Today's Actual]</h2>
+
+      <table class="data_table">
+        <thead>
+          <tr>
+            <th class="th--middle">日付</th>
+            <th class="th--large">案件</th>
+            <th class="th--middle">作業内容</th>
+            <th>予定時間</th>
+            <th>実績時間</th>
+            <th class="th--large">備考</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="(key, value) in main2.jira track by $index"">
+          <td class="ta-c">{{today}}</td>
+          <td><a href="https://jira.rakuten-it.com/jira/browse/{{value.issue.key}}" onclick="openLink(this); return false;">{{value.issue.summary}}</a>
+          </td>
+          <td>
+            <div></div>
+          </td>
+          <td class="ta-c">
+            <div>{{value.billedSeconds}}</div>
+          </td>
+          <td class="ta-c">
+            <div">{{value.timeSpentSeconds/3600}}</div>
+          </td>
+          <td>
+            <div>{{value.comment}}</div>
+          </td>
+        </tr>
+        <tr ng-repeat="(key2, value2) in main2.plan track by $index"">
+          <td class="ta-c">{{today}}</td>
+          <td><a href="https://jira.rakuten-it.com/jira/browse/{{value2.planItem.key}}" onclick="openLink(this); return false;">{{value2.planItem.summary}}</a></td>
+          <td></td>
+          <td class="ta-c">{{value2.seconds/3600}}</td>
+          <td class="ta-c"></td>
+          <td>{{value2.comment}}</td>
+        </tr>
+      </table>
+
+      <h2>[Tomorrow's Plan]</h2>
+
+      <table class="data_table">
+        <thead>
+          <tr>
+            <th class="th--middle">日付</th>
+            <th class="th--large">案件</th>
+            <th class="th--middle">作業内容</th>
+            <th>予定時間</th>
+            <th>実績時間</th>
+            <th class="th--large">備考</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="item in main2.plan2 track by $index"">
+          <td class="ta-c">{{tomorrow}}</td>
+          <td><a href="https://jira.rakuten-it.com/jira/browse/{{item.planItem.key}}" onclick="openLink(this); return false;">{{item.planItem.summary}}</a></td>
+          <td></td>
+          <td class="ta-c">{{item.seconds/3600}}</td>
+          <td class="ta-c"></td>
+          <td>{{item.comment}}</td>
+        </tr>
+      </table>
+
+      <h2>[Tomorrow’s Overtime work]</h2>
+      <div>
+        <div>{{tOver}}</div>
+      </div>
+
+      <h2>[TOEIC]</h2>
+      <div>10 / 31</div>
+
+      <h2>[Holiday]</h2>
+      <div>
+          {{holiday}}
+      </div>
+
+      <h2 for="01">[Etc]</h2>
+      <div>{{etc}}</div>
+
+      <p>以上、よろしくお願いいたします。</p>
+
+    </div>
+  </section>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/lib/jquery.js"></script>
+  <script src="js/day.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/get.js"></script>
+  <script src="js/report.js"></script>
+
+</body>
+</html>
