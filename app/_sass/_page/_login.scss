@@ -2,8 +2,9 @@
 @import "../_base/var";
 
 
-#login-page {
+#login_page {
   padding-left: 0;
+  background: $bg_color;
    nav {
     display: none;
   }
@@ -38,7 +39,9 @@
     button {
       display: block;
       width: 100%;
+      height: auto;
       padding: 10px;
+      background: $button_color;
     }
   }
   .error {

@@ -15,10 +15,11 @@ $button_color: #eee;
 
 
 $pd_01: 7px;
-
+$mg_01: 10px;
 
 $color_bank: #FBB019;
 $color_dark: #000;
+$color_white: #fff;
 // $color_gray: #f0f0f0;
 $color_sub: #4a4a4a;
 
@@ -30,7 +31,36 @@ $color_hover: #eee;
 
 
 $font_size_large: 24px;
+$font_size_small: 11px;
+$font_size_xsmall: 10px;
 
 
-
+$body_size: 950px;
 $nav_size: 150px;
+$contents_size: 780px;
+
+
+
+
+@mixin contents_nav() {
+    position: fixed;
+    left: $nav_size;
+    right: 0;
+    width: $contents_size;
+    z-index: 9999;
+    background: $bg_color;
+}
+
+
+
+@mixin icon() {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  content: " ";
+  vertical-align: middle;
+
+}

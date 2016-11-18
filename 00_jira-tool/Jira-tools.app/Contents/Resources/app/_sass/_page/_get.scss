@@ -1,0 +1,110 @@
+
+@import "../_base/var";
+
+
+#view_get {
+  #table-head {
+    position: fixed;
+    border-top: none;
+    top: 0;
+    left: $nav_size;
+    @include contents_nav();
+  }
+  #input {
+    padding-top: 30px;
+  }
+}
+
+#input {
+  form {
+    width: $contents_size;
+  }
+
+  .data_table {
+    thead {
+      th, td {
+        padding: 5px;
+        font-size: 10px;
+      }
+    }
+    border-top: none;
+    border-left: none;
+    th, td {
+      border-right: 0;
+      word-break: break-all;
+      &:last-child {
+        // border-right: 1px solid #ccc;
+      }
+      &:nth-child(1) {
+        width: 6%;
+      }
+      &:nth-child(2) {
+        width: 49%;
+      }
+      &:nth-child(3) {
+        width: 10%;
+      }
+      &:nth-child(4) {
+        width: 25%;
+      }
+      &:nth-child(5) {
+        width: 10%;
+      }
+      // &:nth-child(5) {
+      //   width: 10%;
+      //   font-size: 11px;
+      // }
+      input {
+        width: 100%;
+      }
+    }
+  }
+  .btn-submit {
+    &.status-submit {
+      background-image: url(../img/load.svg);
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      .text {
+        display: none;
+      }
+    }
+  }
+}
+
+@mixin icon() {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  content: " ";
+  vertical-align: middle;
+
+}
+.icon-browser {
+  @include icon();
+  background-image: url(../img/browser.svg);
+}
+.icon-other {
+  @include icon();
+  background-image: url(../img/archives.svg);
+}
+
+
+@mixin bg-icon {
+  padding-left: 14px;
+  background-size: 10px auto;
+  background-repeat: no-repeat;
+  background-position: 0 2px;
+  font-size: $font_size_small;
+}
+.icon-user {
+  @include bg-icon();
+  background-image: url(../img/user.svg);
+}
+.icon-calendar {
+  @include bg-icon();
+  background-image: url(../img/calendar.svg);
+
+}

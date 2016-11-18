@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html ng-app="readUs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>JIRA Tools</title>
+<link rel="stylesheet" href="bower_components/sanitize-css/sanitize.css" />
+<link rel="stylesheet" href="css/main.css"/>
+
+</head>
+<body id="body">
+
+  <nav id="global_nav">
+    <div id="app-simbol"></div>
+<!--     <div class="target">
+      <label>Creator</label>
+      <select>
+        <option value="creator">Creator</option>
+        <option value="director">Director</option>
+      </select>
+    </div> -->
+    <ul class="menu" id="menu_creator">
+      <li><a href="#view_get">My Task</a></li>
+      <li><a href="#view_report">Dairy Reort</a></li>
+<!--       <li><a href="#view_report">Dairy Reort</a></li>
+      <li><a href="#view_report">Dairy Reort</a></li> -->
+    </ul>
+    <ul class="menu" id="menu_director" style="display: none;">
+      <li><a href="#view_request" class="active">Request</a></li>
+    </ul>
+    <!-- <div><a href="#" id="refresh">Refresh</a></div> -->
+  </nav>
+
+  <div class="contents_wrap" id="contents_creator">
+    <section id="view_get">
+      <div id="contents-load2"></div>
+      <div id="contents-error" style="display: none;">
+        errorです。
+      </div>
+      <div id="input" style="display: none;" ng-controller="MainController as main">
+      <!-- <div id="input" ng-controller="MainController as main"> -->
+        <table class="data_table" id="table-head">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Project</th>
+              <th>Spent Time</th>
+              <th>Comment</th>
+              <th>Submit</th>
+              <!-- <th>Status</th> -->
+            </tr>
+          </thead>
+        </table>
+        <form ng-repeat="(key, value) in main.jira.issues">
+          <table class="data_table">
+            <tr>
+              <td>
+                <span class="icon-other" ng-if="value.fields.summary.indexOf('間接') != -1"></span>
+                <span class="icon-browser" ng-if="value.fields.summary.indexOf('間接') == -1"></span>
+              </td>
+              <td>
+                <a class="block" href="https://jira.rakuten-it.com/jira/browse/{{value.key}}" onclick="openLink(this); return false;">{{value.fields.summary}}</a>
+                <span class="icon-user" ng-if="value.fields.reporter.name != 'b-tomomi.b.shimada'">{{value.fields.reporter.name}}</span>
+                <span class="icon-calendar" ng-if="value.fields.customfield_12005">{{value.fields.customfield_12005}} 〜 {{value.fields.customfield_12005}}</span>
+              </td>
+              <td><input type="text" placeholder="3.5h" name="{{value.key}}-time"></td>
+              <td><input type="text" placeholder="Design, modify etc" name="{{value.key}}-comment"></td>
+              <td><button class="btn-submit" data-key="{{value.key}}" onclick="postTimeSpent(this);"><span class="text">送信</span></button></td>
+              <!-- <td>{{value.fields.status.name}}</td> -->
+            </tr>
+          </table>
+        </form>
+      </div>
+    </section>
+
+    <section id="view_report" style="display: none;">
+      <!-- <div id="contents-load"></div> -->
+      <div id="contents-error" style="display: none;">
+        errorです。
+      </div>
+
+
+      <nav>
+        <div class="wrapper_button">
+          <button id="copy_button">
+            <div class="button-content">
+              <i class="fa fa-clipboard" aria-hidden="true"></i>
+              <span>クリップボードにコピー</span>
+            </div>
+          </button>
+        </div>
+      </nav>
+      <!-- <div id="contents-report" style="display: none;" ng-controller="MainController2 as main2"> -->
+      <div id="contents-report" ng-controller="MainController2 as main2">
+        お疲れ様です。{{name}}です。<br>
+        本日の業務について報告いたします。
+
+        <h2>[Impression]</h2>
+        <div>
+          <!-- <textarea placeholder="所感を記述"></textarea> -->
+          -- 所感を記述 --
+        </div>
+
+
+        <h2>[Today's overtime] (from 17:30:00)</h2>
+        <div>
+          <div>00:00:00</div>
+        </div>
+
+        <h2>[Overtime in this month] ({{year}}/{{month}})</h2>
+          <div>0:00:00 / 30:00:00</div>
+
+        <h2>[Possible overtime in this month] ({{year}}/{{month}})</h2>
+        <div>30:00:00</div>
+
+        <h2>[Average of possible overtime per day]</h2>
+        <div ng-bind="averagePosiOvertime"></div>
+
+        <h2>[Workday in this month]</h2>
+        <div ng-bind="workday"></div>
+
+        <h2>[Today's Actual]</h2>
+
+        <table class="data_table">
+          <thead>
+            <tr>
+              <th>日付</th>
+              <th>案件</th>
+              <th>作業内容</th>
+              <th>予定時間</th>
+              <th>実績時間</th>
+            </tr>
+          </thead>
+          <tr ng-repeat="(key, value) in main2.jira track by $index"">
+            <td class="ta-c">{{today}}</td>
+            <td ng-if="value.issue.summary"><a href="https://jira.rakuten-it.com/jira/browse/{{value.issue.key}}" onclick="openLink(this); return false;">{{value.issue.summary}}</a>
+            </td>
+            <td ng-if="value.planItem.summary"><a href="https://jira.rakuten-it.com/jira/browse/{{value.planItem.key}}" onclick="openLink(this); return false;">{{value.planItem.summary}}</a></td>
+            <td>{{value.comment}}</td>
+            <td class="ta-c"><span ng-if="value.seconds">{{value.seconds/3600}}</span></td>
+            <td class="ta-c">{{value.timeSpentSeconds/3600}}</td>
+          </tr>
+        </table>
+
+        <h2>[Tomorrow's Plan]</h2>
+
+        <table class="data_table">
+          <thead>
+            <tr>
+              <th>日付</th>
+              <th>案件</th>
+              <th>作業内容</th>
+              <th>予定時間</th>
+              <th>実績時間</th>
+            </tr>
+          </thead>
+          <tr ng-repeat="item in main2.plan2 track by $index"">
+            <td class="ta-c">{{tomorrow}}</td>
+            <td><a href="https://jira.rakuten-it.com/jira/browse/{{item.planItem.key}}" onclick="openLink(this); return false;">{{item.planItem.summary}}</a></td>
+            <td></td>
+            <td class="ta-c">{{item.seconds/3600}}</td>
+            <td class="ta-c"></td>
+          </tr>
+        </table>
+
+        <h2>[Tomorrow’s Overtime work]</h2>
+        <div>
+          <div>{{tOver}}</div>
+        </div>
+
+        <h2>[TOEIC]</h2>
+        <div></div>
+
+        <h2>[Holiday]</h2>
+        <div>
+            {{holiday}}
+        </div>
+
+        <h2 for="01">[Etc]</h2>
+        <div>{{etc}}</div>
+
+        <p>以上、よろしくお願いいたします。</p>
+
+      </div>
+    </section>
+  </div>
+  <div class="contents_wrap" id="contents_director" style="display: none;">
+    <section id="view_request">
+    jira
+    </section>
+  </div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/lib/jquery.js"></script>
+  <script src="js/day.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/get.js"></script>
+  <script src="js/report.js"></script>
+
+</body>
+</html>

@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "jquery": "~1.12.3",
-    "sanitize-css": "^4.1.0"
+    "sanitize-css": "^4.1.0",
+    "chart.js": "^2.3.0"
   }
 }

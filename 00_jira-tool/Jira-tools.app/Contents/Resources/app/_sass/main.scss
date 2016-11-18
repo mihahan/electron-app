@@ -1,0 +1,55 @@
+
+@import "_base/var";
+@import "_base/powertip";
+@import "_base/jquery.datetimepicker";
+
+@import "_page/common";
+@import "_page/nav";
+@import "_page/login";
+@import "_page/get";
+@import "_page/report";
+@import "_page/plan";
+
+body {
+  margin: 0 auto;
+  color: $font_color_main;
+  font-family: "Helvetica Neue", Helvetica, Arial, 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ', Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  &#body {
+    padding-left: $nav_size;
+  }
+  &.active {
+    background: $bg_color;
+  }
+}
+
+a {
+  color: $link_color;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+input, textarea, pre {
+  margin: 0;
+  padding: $pd_01;
+}
+input, textarea {
+  border: 1px solid $border_color;
+  background: $bg_color_light;
+  border-radius: 5px;
+  &:focus {
+    border: 1px solid $link_color;
+    outline: none;
+  }
+}
+button {
+  &:focus {
+    outline: none;
+  }
+}
+
+
+

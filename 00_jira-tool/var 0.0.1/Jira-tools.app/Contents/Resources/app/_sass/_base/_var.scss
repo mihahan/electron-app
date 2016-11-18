@@ -1,0 +1,49 @@
+$border_color: #ccc;
+
+$bg_color: #eee;
+$bg_color_light: #fff;
+$bg_color_table: #ededed;
+
+$font_color_light: #fff;
+$font_color_main: #333;
+$font_color_disable: #aaa;
+$font_color_error: #ff5f5f;
+
+$font_color_explain: #bbbbbb;
+
+$button_color: #eee;
+
+
+$pd_01: 7px;
+
+
+$color_bank: #FBB019;
+$color_dark: #000;
+// $color_gray: #f0f0f0;
+$color_sub: #4a4a4a;
+
+$color_alpha: rgba(51, 51, 51, 0.7);
+
+$link_color: #1CA8DD;
+
+$color_hover: #eee;
+
+
+$font_size_large: 24px;
+
+
+
+$nav_size: 150px;
+$contents_size: 780px;
+
+
+
+
+@mixin contents_nav() {
+    position: fixed;
+    left: $nav_size;
+    right: 0;
+    width: $contents_size;
+    z-index: 9999;
+    background: $bg_color;
+}

@@ -1,0 +1,91 @@
+@import "../_base/var";
+
+$active_color: #54c0eb;
+
+
+#app-simbol {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  background: url(../img/app-symbol.svg);
+  background-size: 100% 100%;
+}
+
+
+
+#global_nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: $nav_size;
+  height: 100%;
+  background: $bg_color;
+  .target {
+    position: relative;
+    width: 120px;
+    height: 60px;
+    margin: 0 auto;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333333;
+
+    label, select {
+      width: 100%;
+      padding: 10px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: 1px solid #999;
+      border-radius: 3px;
+      background: #eee;
+      background-image: -webkit-linear-gradient(top, #fff 0%,#efebe1 100%);
+      background-image: linear-gradient(to bottom, #fff 0%,#efebe1 100%);
+      background-position: right 50%;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      text-align: center;
+    }
+    label, select {
+      position: absolute;
+      top: 0;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333333;
+      cursor: pointer;
+
+    }
+    select {
+      opacity: 0;
+    }
+  }
+  .menu {
+    & + dl {
+      margin-top: 50px;
+    }
+    dt {
+      padding: 10px;
+      border-bottom: 1px solid $border_color;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    li {
+      list-style: none;
+      a {
+        display: block;
+        padding: 20px;
+        // border-bottom: 2px solid #ccc;
+        color: #333333;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        &.active {
+          background: $active_color;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

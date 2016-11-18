@@ -12,14 +12,21 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
   Menu.setApplicationMenu(menu);
-  openWindow(process.cwd());
+  openWindow(process.cwd(), 'index.html', {
+    width: 950,
+    // height: 600,
+    height: 1200,
+    x: 10,
+    y: 50,
+    resizable: true
+  });
 });
 
 
 // window
-function openWindow (baseDir) {
-  var win = new BrowserWindow({width: 950, height: 1200});
-  win.loadURL('file://' + __dirname + '/index.html?baseDir=' + encodeURIComponent(baseDir));
+function openWindow (baseDir, path, options) {
+  var win = new BrowserWindow(options);
+  win.loadURL('file://' + __dirname + '/' + path + '?baseDir=' + encodeURIComponent(baseDir));
 
   win.openDevTools();
   win.on('closed', function() {

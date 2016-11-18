@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>JIRA Tools</title>
+<link rel="stylesheet" href="../../bower_components/sanitize-css/sanitize.css" />
+<link rel="stylesheet" href="../../css/main.css"/>
+</head>
+
+<body id="body" ng-controller="MainController">
+
+  <nav id="global_nav" ng-controller="NavController" navigation={{currentPage}}>
+    <div id="app_simbol"></div>
+<!--     <div class="target">
+      <label>Creator</label>
+      <select>
+        <option value="creator">Creator</option>
+        <option value="director">Director</option>
+      </select>
+    </div> -->
+    <dl class="menu" id="menu_creator">
+      <dt ng-mouseover="openChildNav($event)" ng-mouseleave="closeChildNav($event)" ng-click="openChildNav($event, 'click')">Creator</dt>
+      <dd>
+        <ul>
+          <li><a href="#/" data-status="task">My Task</a></li>
+          <li><a href="#/report" data-status="report">Dairy Reort</a></li>
+          <li><a href="#/plan" data-status="plan" plannav="Myself">Plan</a></li>
+        </ul>
+      </dd>
+    </dl>
+    <dl class="menu" id="menu_director">
+      <dt ng-mouseover="openChildNav($event)" ng-mouseleave="closeChildNav($event)" ng-click="openChildNav($event, 'click')">Report</dt>
+      <dd>
+        <ul>
+          <li><a href="#/weekly" data-status="weekly" reportnav="Weekly">Weekly</a></li>
+          <li><a href="#/monthly" data-status="monthly" reportnav="Monthly">Monthly</a></li>
+        </ul>
+      </dd>
+    </dl>
+    <dl class="menu" id="menu_director">
+      <dt ng-mouseover="openChildNav($event)" ng-mouseleave="closeChildNav($event)" ng-click="openChildNav($event, 'click')">Director</dt>
+      <dd>
+        <ul>
+          <li><a href="#/request" data-status="request">Request</a></li>
+          <li><a href="#/plan-all" data-status="plan-all" plannav="Users">Plan All</a></li>
+        </ul>
+      </dd>
+    </dl>
+<!--     <ul class="navigation">
+      <li><a class="icon-task">Creator</a></li>
+      <li><a class="icon-plan">Director</a></li>
+      <li><a class="icon-report">Report</a></li>
+    </ul>
+        <ul>
+          <li><a href="#/" data-status="task">My Task</a></li>
+          <li><a href="#/report" data-status="report">Dairy Reort</a></li>
+          <li><a href="#/plan" data-status="plan">Plan</a></li>
+        </ul> -->
+  </nav>
+
+  <div ng-view class="contents_wrap" id="contents_creator"></div>
+
+
+
+  <script src="../../bower_components/angular/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+  <!-- <script src="../../js/day.js"></script> -->
+
+  <script>require('../../src/controllers/route.js');</script>
+  <script>require('../../src/controllers/var.js');</script>
+  <script>require('../../src/controllers/controller.js');</script>
+  <script>require('../../src/controllers/directive.js');</script>
+  <!-- <script src="js/calDays.js"></script> -->
+
+</body>
+</html>

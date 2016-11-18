@@ -1,0 +1,13 @@
+<canvas width="500" height="200" id="myChart{{value.username}}" data-user={{value.username}} drawing></canvas>
+<ul class="detail_list">
+  <li ng-repeat="(key, value) in value.datas | orderBy: ['day']">
+    <div class="sum">{{value.DDDD}}</div>
+    <div class="sum">{{value.sum}}</div>
+
+    <dl ng-repeat="(key, value2) in value.items">
+      <dt><a data-href="https://jira.rakuten-it.com/jira/browse/{{value2.key}}" ng-click="openLink($event)">{{value2.summary}}</a></dt>
+      <dd>{{value2.plantime}}</dd>
+    </dl>
+
+  </li>
+</ul>

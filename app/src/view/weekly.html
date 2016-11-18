@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>JIRA Tools</title>
+
+</head>
+<body>
+  <div id="view-report--weekly">
+    <h1>{{title}}</h1>
+    <form ng-submit="updateReport()">
+      <input type="text" value={{start}} ng-model="start"> -
+      <input type="text" value={{end}} ng-model="end"><button type="submit">更新</button>
+    </form>
+
+    <div class="contents-load"></div>
+    <div class="contents-error">
+      errorです。
+    </div>
+
+    <section class="contents-view">
+
+      <div ng-repeat="(key, value) in data track by $index">
+        <h2>{{value.username}}</h2>
+        <table class="data_table">
+          <tr ng-repeat="(key, value) in value.datas">
+            <td>
+              <a class="block" data-href="https://jira.rakuten-it.com/jira/browse/{{value.key}}" ng-click="openLink($event)">{{value.summary}}</a>
+            </td>
+            <td>{{value.timeSpentSeconds}}</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

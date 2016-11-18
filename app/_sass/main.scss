@@ -3,26 +3,28 @@
 @import "_base/powertip";
 @import "_base/jquery.datetimepicker";
 
+@import "_page/common";
 @import "_page/nav";
 @import "_page/login";
-@import "_page/get";
+@import "_page/task";
 @import "_page/report";
+@import "_page/plan";
 
 body {
   margin: 0 auto;
-  padding-left: $nav_size;
-  font-size: 13px;
-  line-height: 1.4em;
   color: $font_color_main;
+  font-family: "Helvetica Neue", Helvetica, Arial, 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ', Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.4em;
-  color: #333333;
-  // width: 800px;
-  margin: 0 auto;
-  -webkit-font-smoothing: antialiased;
+  &#body {
+    padding-left: $nav_size;
+  }
+  &.active {
+    background: $bg_color;
+  }
 }
+
 a {
   color: $link_color;
 }
@@ -48,79 +50,6 @@ button {
     outline: none;
   }
 }
-
-
-
-
-#view_report {
-  padding: 20px;
-  background: $bg_color_light;
-  h2 {
-    display: block;
-    margin: 10px 0 5px;
-    font-size: 13px;
-    font-weight: bold;
-  }
-}
-
-// ------------------------------
-// table
-// ------------------------------
-
-.data_table {
-  width: 100%;
-  border-top: 1px solid $border_color;
-  border-left: 1px solid $border_color;
-  th, td {
-    width: 5%;
-    padding: $pd_01;
-    border-right: 1px solid $border_color;
-    border-bottom: 1px solid $border_color;
-  }
-  th {
-    background: $bg_color_table;
-    font-size: 11px;
-    white-space: nowrap;
-  }
-  td {
-    background: $bg_color_light;
-    font-size: 12px;
-  }
-  .ta-c {
-    text-align: center;
-  }
-  .th--xsmall {
-    width: 2%;
-  }
-  .th--middle {
-    width: 12%;
-  }
-  .th--large {
-    width: 28%;
-  }
-}
-
-
-
-
-h1 {
-  margin: 0;
-  font-size: $font_size_large;
-  color: $font_color_main;
-}
-
-
-
-#contents-load {
-  width: 200px;
-  height: 50px;
-  margin: 150px auto;
-  background-image: url(../img/load_l.svg);
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-}
-
-
 
 
 

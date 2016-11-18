@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>JIRA Tools</title>
+</head>
+<body>
+  <div class="contents-load"></div>
+  <div class="contents-error">
+    errorです。
+  </div>
+
+    <section id="view-task" class="contents-view">
+      <div id="input">
+        <table class="data_table" id="table-head">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Project</th>
+              <th>Spent Time</th>
+              <th>Comment</th>
+              <th>Submit</th>
+            </tr>
+          </thead>
+        </table>
+        <form ng-repeat="(key, value) in data">
+          <table class="data_table">
+            <tr>
+              <td>
+<!--                 <span class="icon-other" ng-if="value.icon == 'other'"></span>
+                <span class="icon-browser" ng-if="value.icon == 'issue'"></span> -->
+              </td>
+              <td>
+                <a class="block" data-href="https://jira.rakuten-it.com/jira/browse/{{value.key}}" ng-click="openLink($event)">{{value.fields.summary}}</a>
+                <span class="icon-user" ng-if="value.reporter">{{value.reporter}}</span>
+                <span class="icon-calendar" ng-if="value.term">{{value.term}}</span>
+              </td>
+              <td><input type="text" placeholder="3.5h" name="{{value.key}}-time"></td>
+              <td><input type="text" placeholder="Design, modify etc" name="{{value.key}}-comment"></td>
+              <td><button class="btn-submit" data-key="{{value.key}}" ng-click="postTimeSpent($event)"><span class="text">送信</span></button></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </section>
+
+</body>
+</html>
