@@ -12,9 +12,9 @@
 
 #login_wrap {
   width: 250px;
-  margin: 100px auto 0;
+  margin: $mg_01*10 auto 0;
   h1 {
-    margin-bottom: 20px;
+    margin-bottom: $mg_01*2;
     text-align: center;
   }
 }
@@ -22,16 +22,16 @@
 #login {
   width: 250px;
   margin: 0 auto;
-  padding: 20px;
+  padding: $pd_01*3;
   background: $bg_color_light;
   .form-item {
     display: block;
-    margin-top: 10px;
+    margin-top: $mg_01;
     &:first-child {
       margin-top: 0;
     }
     &:last-child {
-      margin-top: 20px;
+      margin-top: $mg_01*2;
     }
     input {
       width: 100%;
@@ -40,13 +40,13 @@
       display: block;
       width: 100%;
       height: auto;
-      padding: 10px;
+      padding: $pd_01;
       background: $button_color;
     }
   }
   .error {
     display: none;
-    margin-top: 10px;
+    margin-top: $mg_01;
     text-align: center;
     color: $font_color_error;
   }

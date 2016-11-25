@@ -1,8 +1,13 @@
 'use strict';
 
-var app = angular.module('myModule', ['ngRoute']);
+var app = angular.module('myApp', [
+  'ngRoute',
+  'myApp.config',
+  'myApp.controllers',
+  'myApp.directive'
+]);
 
-app.config(function($routeProvider) {
+app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/', {
         templateUrl: 'task.html',
@@ -31,7 +36,11 @@ app.config(function($routeProvider) {
         templateUrl: 'plan.html',
         controller: 'PlanController'
     })
+    .when('/operation', {
+        templateUrl: 'operation.html',
+        controller: 'OperationController'
+    })
     .otherwise({
         templateUrl: '404.html'
     });
-});
+}]);

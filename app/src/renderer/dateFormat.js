@@ -10,6 +10,28 @@ module.exports.tomorrow = function(date, formatStyle) {
     return date.toFormat(formatStyle);
 }
 
+module.exports.startDDDDNum = function(date) {
+  var num = 0;
+  date = new Date(date);
+  switch (date.toFormat("DDD")){
+    case 'Mon':
+      num = 0;
+      break;
+    case 'Tue':
+      num = 1;
+      break;
+    case 'Wed':
+      num = 2;
+      break;
+    case 'Thu':
+      num = 3;
+      break;
+    case 'Fri':
+      num = 4;
+      break;
+  }
+  return num;
+};
 module.exports.thisWeekDays = function(date) {
   var original = date,
       dates = [new Date(), new Date(), new Date(), new Date(), new Date()];
@@ -56,6 +78,15 @@ module.exports.thisWeekDays = function(date) {
   return dates;
 };
 
+module.exports.thisMonthDays = function(date) {
+  var dateNum = [31,28,31,30,31,30,31,31,30,31,30,31],
+      dates = [];
+  date = new Date(date);
+  for (var i=1; i<= dateNum[date.toFormat("MM")-1]; i++) {
+    dates.push(date.toFormat('YYYY') + '-' + date.toFormat("MM") + '-' + ('0' + i).slice(-2));
+  }
+  return dates;
+};
 
 var getHolidays = function(year) {
     "use strict";

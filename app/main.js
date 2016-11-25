@@ -26,6 +26,7 @@ app.on('ready', function() {
 // window
 function openWindow (baseDir, path, options) {
   var win = new BrowserWindow(options);
+
   win.loadURL('file://' + __dirname + '/' + path + '?baseDir=' + encodeURIComponent(baseDir));
 
   win.openDevTools();

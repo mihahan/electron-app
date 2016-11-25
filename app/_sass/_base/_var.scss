@@ -1,13 +1,14 @@
 $border_color: #ccc;
 
-$bg_color: #eee;
+$bg_color: #f1f1f1;
 $bg_color_light: #fff;
-$bg_color_table: #ededed;
+$bg_color_table: #e8e8e8;
+$bg_color_main: #eeeeee;
 
 $font_color_light: #fff;
 $font_color_main: #333;
-$font_color_disable: #aaa;
-$font_color_error: #ff5f5f;
+$font_color_disable: #f0f0f0;
+$font_color_error: #ff7070;
 
 $font_color_explain: #bbbbbb;
 
@@ -16,12 +17,23 @@ $button_color: #eee;
 
 $pd_01: 7px;
 $mg_01: 10px;
+$mg_inner: 16px;
+$radius: 5px;
 
+
+$color_main: #54c0eb;
 $color_bank: #FBB019;
 $color_dark: #000;
 $color_white: #fff;
-// $color_gray: #f0f0f0;
 $color_sub: #4a4a4a;
+$font_color_sharp: #2f2f2f;
+
+$color_available: #a0cbce;
+$color_normal: #ffb758;
+$color_alert: $font_color_error;
+
+
+
 
 $color_alpha: rgba(51, 51, 51, 0.7);
 
@@ -29,29 +41,38 @@ $link_color: #1CA8DD;
 
 $color_hover: #eee;
 
-
+$font_size_large--percent: 50px;
 $font_size_large: 24px;
+$font_size_medium: 18px;
+$font_size_normal: 14px;
+$font_size_small_plus: 12px;
 $font_size_small: 11px;
 $font_size_xsmall: 10px;
 
 
 $body_size: 950px;
 $nav_size: 150px;
-$contents_size: 780px;
+$toolbar_size: 50px;
+$contents_size: $body_size - $nav_size;
 
 
 
+@mixin bg-icon {
+  padding-left: $pd_01*2;
+  background-size: 10px auto;
+  background-repeat: no-repeat;
+  background-position: 0 2px;
+  font-size: $font_size_small;
+}
 
 @mixin contents_nav() {
     position: fixed;
     left: $nav_size;
     right: 0;
     width: $contents_size;
-    z-index: 9999;
+    z-index: 8888;
     background: $bg_color;
 }
-
-
 
 @mixin icon() {
   display: inline-block;

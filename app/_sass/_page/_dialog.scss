@@ -1,0 +1,38 @@
+@import "../_base/var";
+
+.dialog {
+  .title {
+    padding: $pd_01;
+    border-bottom: 1px solid $border_color;
+    font-size: $font_size_normal;
+  }
+  form {
+    display: table;
+    width: 100%;
+    padding: $pd_01*2;
+  }
+  .area-input {
+    display: table-cell;
+    width: 85%;
+  }
+  .area-btn {
+    display: table-cell;
+    width: 14%;
+    vertical-align: middle;
+    text-align: center;
+  }
+  label {
+    display: inline-block;
+    margin-right: $mg_01;
+  }
+  .item {
+    margin-top: $mg_01;
+  }
+}
+
+.dialog {
+  .md-icon-button+.md-datepicker-input-container {
+    margin-left: 0;
+  }
+}
+

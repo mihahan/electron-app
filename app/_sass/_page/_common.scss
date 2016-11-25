@@ -1,8 +1,16 @@
-
 @import "../_base/var";
 
 
+ul, li, dl, dt, dd {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
+
+a {
+  cursor: pointer;
+}
 
 .block {
   display: block;
@@ -11,10 +19,8 @@
 
 .contents_wrap {
   height: 100%;
-  background: #ffffff;
   width: $contents_size;
 }
-
 
 .contents-load {
   width: 200px;
@@ -37,22 +43,30 @@
   border-top: 7px solid $border-color;
   border-bottom: 7px solid $border-color;
   text-align: center;
-  font-size: 20px;
+  font-size: $font_size_medium;
 }
-.contents-view {
+
+.contents-nodata {
   display: none;
   &.active {
     display: block;
   }
 }
 
-
-.block {
-  & + .block {
-    margin-top: 50px;
+.contents-view {
+  display: none;
+  &.active {
+    display: block;
+  }
+  .item_block {
+    margin: $mg_inner;
   }
 }
 
+
+.contents-title {
+  margin-left: $mg_inner;
+}
 
 // ------------------------------
 // table
@@ -71,49 +85,52 @@
   }
   th {
     background: $bg_color_table;
-    font-size: 11px;
+    font-size: $font_size_small;
     white-space: nowrap;
+    color: $font_color_sharp;
   }
   td {
     background: $bg_color_light;
-    font-size: 12px;
-  }
-  .ta-c {
-    text-align: center;
-  }
-  .th--xsmall {
-    width: 2%;
-  }
-  .th--middle {
-    width: 12%;
-  }
-  .th--large {
-    width: 28%;
+    font-size: $font_size_small_plus;
   }
 }
 
 
-button {
-  display: inline-block;
-  width: 60px;
-  height: 30px;
-  background-color: $button_color;
-  border-radius: 10px;
+form {
+  button {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    background-color: $button_color;
+    border-radius: $radius;
+  }
 }
 
 
 
 
 .change_data_form {
-  margin: 20px 10px;
+  margin: $mg_01*2 $mg_01;
 }
 .input_checkbox {
   display: inline-block;
-  margin-right: 30px;
+  margin-right: $mg_01*3;
   input {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: $mg_01;
   }
 }
 
+
+
+
+
+//overray//
+
+.md-button {
+  min-width: inherit;
+}
+md-content.md-default-theme, md-content {
+  color: inherit;
+}
 

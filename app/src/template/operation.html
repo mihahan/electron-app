@@ -1,0 +1,4 @@
+<li ng-class="value.class" ng-repeat="(key, value) in data | orderBy: ['day']">
+  <div class="day">{{value.day.slice(-2)}}</div>
+  <div class="sum"><span class="percent">{{value.sum}}</span><span class="unit" ng-show="value.sum != '-'">%</span></div>
+</li>

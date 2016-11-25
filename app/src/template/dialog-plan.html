@@ -1,0 +1,35 @@
+
+<div class="dialog">
+  <div class="title">{{key}}: {{summary}}</div>
+
+  <form ng-submit="submit($event)">
+    <div class="area-input">
+      <div class="item">
+        <label for="time">予定時間</label>
+        <input type="text" name="time" placeholder="1.5h" id="time">
+      </div>
+      <div class="item">
+        <label for="schedule">スケジュール</label>
+
+        <div ng-cloak="" class="datepickerdemoBasicUsage">
+          <md-datepicker ng-model="startDay" md-placeholder="Enter date"></md-datepicker>
+          <span style="display:inline-block;padding-left: 15px;">〜</span>
+          <md-datepicker ng-model="endDay" md-placeholder="Enter date"></md-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="area-btn">
+      <button>submit</button>
+    </div>
+
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+
+
+
+
+  </form>
+</div>

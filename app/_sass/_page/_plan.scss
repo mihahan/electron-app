@@ -1,22 +1,8 @@
 
 @import "../_base/var";
 
-ul, li, dl, dt, dd {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
 #view-plan {
   position: relative;
-  padding: 20px 0 60px;
-  background: $bg_color_light;
-  h2 {
-    display: block;
-    margin: 10px 0 5px;
-    font-size: 13px;
-    font-weight: bold;
-  }
   canvas {
     width: 500px;
     height: 300px;
@@ -28,7 +14,7 @@ ul, li, dl, dt, dd {
     display: box;
     display: -webkit-box;
     li {
-      width: 143px;
+      width: 19.2%;
       padding: 0 $pd_01;
       font-size: $font_size_xsmall;
       box-sizing: border-box;
@@ -44,7 +30,7 @@ ul, li, dl, dt, dd {
         display: table-cell;
         a {
           display: block;
-          width: 100px;
+          width: 118px;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
@@ -56,13 +42,6 @@ ul, li, dl, dt, dd {
         text-align: right;
       }
     }
-  }
-}
-
-.plan-all {
-  canvas {
-    width: 200px;
-    height: 100px;
   }
 }
 

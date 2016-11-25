@@ -7,32 +7,45 @@
 
 </head>
 <body>
-  <div id="view-report--weekly">
-    <h1>{{title}}</h1>
-    <form ng-submit="updateReport()">
-      <input type="text" value={{start}} ng-model="start"> -
-      <input type="text" value={{end}} ng-model="end"><button type="submit">更新</button>
-    </form>
+  <div layout="column" layout-fill class="subheaderdemoBasicUsage" id="view-report--weekly">
 
     <div class="contents-load"></div>
     <div class="contents-error">
       errorです。
     </div>
+    <div class="contents-nodata">
+      Dataがまだありません
+    </div>
 
-    <section class="contents-view">
+    <md-content>
+      <section class="contents-view">
+        <h1 class="contents-title">{{title}}</h1>
 
-      <div ng-repeat="(key, value) in data track by $index">
-        <h2>{{value.username}}</h2>
-        <table class="data_table">
-          <tr ng-repeat="(key, value) in value.datas">
-            <td>
-              <a class="block" data-href="https://jira.rakuten-it.com/jira/browse/{{value.key}}" ng-click="openLink($event)">{{value.summary}}</a>
-            </td>
-            <td>{{value.timeSpentSeconds}}</td>
-          </tr>
-        </table>
-      </div>
-    </section>
+        <md-subheader>
+          <form ng-submit="updateReport()">
+            <div ng-cloak="" class="datepickerdemoBasicUsage">
+              <md-datepicker ng-model="startDay" md-placeholder="Enter date"></md-datepicker>
+              <span style="display:inline-block;padding-left: 15px;">〜</span>
+              <md-datepicker ng-model="endDay" md-placeholder="Enter date"></md-datepicker>
+              <button type="submit">更新</button>
+            </div>
+          </form>
+
+              <a id="hogehoge">レポート生成</a>
+        </md-subheader>
+        <div ng-repeat="(key, value) in data track by $index" class="item_block">
+          <h2>{{value.username}}</h2>
+          <table class="data_table">
+            <tr ng-repeat="(key, value) in value.datas">
+              <td>
+                <a class="block" data-href="https://jira.rakuten-it.com/jira/browse/{{value.key}}" ng-click="openLink($event)">{{value.summary}}</a>
+              </td>
+              <td>{{value.timeSpentSeconds}}</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+    </md-content>
   </div>
 
 </body>

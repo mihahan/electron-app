@@ -8,21 +8,27 @@
 </head>
 <body>
 
-  <form class="change_data_form" ng-submit="updateView()">
-    <label class="input_checkbox"><input type="checkbox" ng-model="checkboxModel[0]" ng-true-value="'b-tomomi.b.shimada'" ng-false-value="">b-tomomi.b.shimada</label>
-    <label class="input_checkbox"><input type="checkbox" ng-model="checkboxModel[1]" data-func="select-user" ng-true-value="'b-tatsuhiro.a.abe'" ng-false-value="">b-tatsuhiro.a.abe</label>
-    <label class="input_checkbox"><input type="checkbox" ng-model="checkboxModel[2]" data-func="select-user" ng-true-value="'b-hitomi.a.parsi'" ng-false-value="">b-hitomi.a.parsi</label>
-    <button type="submit">更新</button>
-  </form>
+  <div layout="column" layout-fill class="subheaderdemoBasicUsage" id="view-plan">
+    <md-content>
+      <section class="contents-view">
+        <md-subheader>
 
-  <div class="contents-load"></div>
-  <div class="contents-error">
-    errorです。
+          <form class="change_data_form" ng-submit="updateView()">
+            <label class="input_checkbox"><input type="checkbox" ng-model="checkboxModel[0]" ng-true-value="'b-tomomi.b.shimada'" ng-false-value="">b-tomomi.b.shimada</label>
+            <label class="input_checkbox"><input type="checkbox" ng-model="checkboxModel[1]" data-func="select-user" ng-true-value="'b-tatsuhiro.a.abe'" ng-false-value="">b-tatsuhiro.a.abe</label>
+            <label class="input_checkbox"><input type="checkbox" ng-model="checkboxModel[2]" data-func="select-user" ng-true-value="'b-hitomi.a.parsi'" ng-false-value="">b-hitomi.a.parsi</label>
+            <button type="submit">更新</button>
+          </form>
+        </md-subheader>
+        <div class="contents-load"></div>
+        <div class="contents-error">
+          errorです。
+        </div>
+        <div class="plan-items">
+          <div planitem class="item_block" ng-repeat="(key, value) in data track by $index"></div>
+        </div>
+      </section>
+    </md-content>
   </div>
-
-  <section id="view-plan" class="contents-view plan-all">
-    <div planitem class="block" ng-repeat="(key, value) in data track by $index"></div>
-  </section>
-
 </body>
 </html>

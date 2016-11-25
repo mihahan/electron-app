@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>JIRA Tools</title>
+
+</head>
+<body>
+
+  <div layout="column" layout-fill class="subheaderdemoBasicUsage" id="view-operation">
+    <md-content>
+      <section class="contents-view">
+        <div class="contents-load"></div>
+        <div class="contents-error">
+          errorです。
+        </div>
+        <h1 class="contents-title">稼働カレンダー</h1>
+        <div class="title">
+          <button class="icon_arrow--left" ng-click="prevMonth()"></button>
+          <h3>{{month}}</h3>
+          <button class="icon_arrow--right" ng-click="nextMonth()"></button>
+        </div>
+        <ul class="operation-items">
+          <operationitem></operationitem>
+        </ul>
+      </section>
+    </md-content>
+  </div>
+
+</body>
+</html>

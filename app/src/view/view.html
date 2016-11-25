@@ -1,78 +1,136 @@
 <!DOCTYPE html>
-<html ng-app="myModule">
+<html ng-app="myApp">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>JIRA Tools</title>
 <link rel="stylesheet" href="../../bower_components/sanitize-css/sanitize.css" />
+<!-- Angular Material style sheet -->
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 <link rel="stylesheet" href="../../css/main.css"/>
+
 </head>
 
 <body id="body" ng-controller="MainController">
 
+
+  <div ng-cloak="" class="toolbardemoBasicUsage" id="toolbar" ng-controller="NavController" navigation={{currentPage}}>
+
+    <md-content>
+
+      <md-toolbar class="md-menu-toolbar">
+        <div class="md-toolbar-tools">
+          <!-- <div id="app_simbol"></div> -->
+<!--           <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
+            <md-icon md-svg-icon="../../img/menu.svg"></md-icon>
+          </md-button> -->
+          <h2>Jira Tool</h2>
+
+
+          <span flex></span>
+          <div class="message">ようこそ{{username}}さん</div>
+          <a id="hogehoge">aa</a>
+        </div>
+      </md-toolbar>
+    </md-content>
+  </div>
+
   <nav id="global_nav" ng-controller="NavController" navigation={{currentPage}}>
-    <div id="app_simbol"></div>
-<!--     <div class="target">
-      <label>Creator</label>
-      <select>
-        <option value="creator">Creator</option>
-        <option value="director">Director</option>
-      </select>
-    </div> -->
-    <dl class="menu" id="menu_creator">
-      <dt ng-mouseover="openChildNav($event)" ng-mouseleave="closeChildNav($event)" ng-click="openChildNav($event, 'click')">Creator</dt>
+    <div id="app-simbol"></div>
+    <dl class="menu md-menu-demo menudemoBasicUsage" ng-controller="BasicDemoCtrl as ctrl" ng-cloak="" id="menu_creator">
+      <dt>
+        <md-menu>
+          <md-button ng-click="ctrl.openMenu($mdOpenMenu, $event)">{{ctrl.name}}
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ng-click="ctrl.selectMenu($event)">Creator</md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="ctrl.selectMenu($event)">Director</md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="ctrl.selectMenu($event)">Report</md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </dt>
       <dd>
-        <ul>
+        <ul style="display: {{ctrl.name=='Creator' ? 'block' : 'none' }}">
           <li><a href="#/" data-status="task">My Task</a></li>
           <li><a href="#/report" data-status="report">Dairy Reort</a></li>
           <li><a href="#/plan" data-status="plan" plannav="Myself">Plan</a></li>
         </ul>
-      </dd>
-    </dl>
-    <dl class="menu" id="menu_director">
-      <dt ng-mouseover="openChildNav($event)" ng-mouseleave="closeChildNav($event)" ng-click="openChildNav($event, 'click')">Report</dt>
-      <dd>
-        <ul>
-          <li><a href="#/weekly" data-status="weekly" reportnav="Weekly">Weekly</a></li>
-          <li><a href="#/monthly" data-status="monthly" reportnav="Monthly">Monthly</a></li>
-        </ul>
-      </dd>
-    </dl>
-    <dl class="menu" id="menu_director">
-      <dt ng-mouseover="openChildNav($event)" ng-mouseleave="closeChildNav($event)" ng-click="openChildNav($event, 'click')">Director</dt>
-      <dd>
+        <!-- <ul style="display: {{ctrl.name=='Director' ? 'block' : 'none' }}"> -->
         <ul>
           <li><a href="#/request" data-status="request">Request</a></li>
           <li><a href="#/plan-all" data-status="plan-all" plannav="Users">Plan All</a></li>
+          <li><a href="#/operation" data-status="operation" operationnav>Operation</a></li>
+        </ul>
+        <!-- <ul style="display: {{ctrl.name=='Report' ? 'block' : 'none' }}"> -->
+        <ul>
+          <li><a href="#/weekly" ng-click="close()" data-status="weekly" reportnav="Weekly">Weekly Report</a></li>
+          <li><a href="#/monthly" ng-click="close()" data-status="monthly" reportnav="Monthly">Monthly Report</a></li>
         </ul>
       </dd>
     </dl>
-<!--     <ul class="navigation">
-      <li><a class="icon-task">Creator</a></li>
-      <li><a class="icon-plan">Director</a></li>
-      <li><a class="icon-report">Report</a></li>
-    </ul>
+    <dl class="menu--link">
+      <dt>Link</dt>
+      <dd>
         <ul>
-          <li><a href="#/" data-status="task">My Task</a></li>
-          <li><a href="#/report" data-status="report">Dairy Reort</a></li>
-          <li><a href="#/plan" data-status="plan">Plan</a></li>
-        </ul> -->
+          <li><a data-href="https://confluence.rakuten-it.com/confluence/display/RBC/" ng-click="openLink($event)">Confluence</a></li>
+          <li><a data-href="https://jira.rakuten-it.com/jira/projects/BANKCWDCR" ng-click="openLink($event)">JIRA</a></li>
+        </ul>
+      </dd>
+    </dl>
   </nav>
+
+
+<!--   <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+
+    <md-content layout-padding="" ng-controller="LeftCtrl">
+      <h2>Creator</h2>
+      <md-button href="#/" ng-click="close()" data-status="task">My Task</md-button>
+      <md-button href="#/report" ng-click="close()" data-status="report">Dairy Reort</md-button>
+      <md-button href="#/plan" ng-click="close()" data-status="plan" plannav="Myself">Plan</md-button>
+
+
+      <h2>Report</h2>
+      <md-button href="#/weekly" ng-click="close()" data-status="weekly" reportnav="Weekly">Weekly</md-button>
+      <md-button href="#/monthly" ng-click="close()" data-status="monthly" reportnav="Monthly">Monthly</md-button>
+
+      <h2>Director</h2>
+      <md-button href="#/request" ng-click="close()" data-status="request">Request</md-button>
+      <md-button href="#/plan-all" ng-click="close()" data-status="plan-all" plannav="Users">Plan All</md-button>
+    </md-content>
+  </md-sidenav> -->
 
   <div ng-view class="contents_wrap" id="contents_creator"></div>
 
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
 
-  <script src="../../bower_components/angular/angular.js"></script>
+<!-- <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script> -->
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 
-  <!-- <script src="../../js/day.js"></script> -->
+  <!-- <script src="https://cdn.rawgit.com/bradberger/angular-material-calendar/master/dist/angular-material-calendar.js"></script> -->
 
   <script>require('../../src/controllers/route.js');</script>
   <script>require('../../src/controllers/var.js');</script>
   <script>require('../../src/controllers/controller.js');</script>
   <script>require('../../src/controllers/directive.js');</script>
-  <!-- <script src="js/calDays.js"></script> -->
+
+
+
 
 </body>
 </html>

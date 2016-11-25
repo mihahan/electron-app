@@ -1,7 +1,7 @@
 var $ = require('jquery'),
     chart = require('../renderer/chart.js');
 
-var app = angular.module('myModule');
+var app = angular.module('myApp.directive', ['myApp']);
 
 app.directive("drawing", ['appConfig', 'planConfig', function(appConfig, planConfig){
   return {
@@ -26,6 +26,9 @@ app.directive("reportnav", ['appConfig', 'reportConfig', function(appConfig, rep
     reportConfig.reportName = 'Monthly';
     reportConfig.start = appConfig.formattedToday.YM + '-01';
     reportConfig.end = appConfig.formattedToday.YM + '-' + (appConfig.monthDates[appConfig.formattedToday.M]-1);
+  } else {
+    reportConfig.start = appConfig.monday;
+    reportConfig.end = appConfig.friday;
   }
   return function(scope, element, attr){
     element[0].addEventListener("click", function(){
@@ -34,10 +37,21 @@ app.directive("reportnav", ['appConfig', 'reportConfig', function(appConfig, rep
         reportConfig.start = appConfig.monday;
         reportConfig.end = appConfig.friday;
       } else if (reportConfig.reportName == 'Monthly') {
-
         reportConfig.start = appConfig.formattedToday.YM + '-01';
         reportConfig.end = appConfig.formattedToday.YM + '-' + (appConfig.monthDates[appConfig.formattedToday.M]-1);
       }
+    });
+  }
+}]);
+
+
+app.directive("operationnav", ['appConfig', 'operationConfig', function(appConfig, operationConfig){
+  operationConfig.start = appConfig.formattedToday.YM + '-01';
+  operationConfig.end = appConfig.formattedToday.YM + '-' + (appConfig.monthDates[appConfig.formattedToday.M]-1);
+  return function(scope, element, attr){
+    element[0].addEventListener("click", function(){
+      operationConfig.start = appConfig.formattedToday.YM + '-01';
+      operationConfig.end = appConfig.formattedToday.YM + '-' + (appConfig.monthDates[appConfig.formattedToday.M]-1);
     });
   }
 }]);
@@ -54,7 +68,7 @@ app.directive("plannav", ['appConfig', 'planConfig', function(appConfig, planCon
       if (planConfig.name == 'Myself') {
         planConfig.users = [appConfig.userData.username];
       } else if (planConfig.name == 'Users') {
-        planConfig.users = $scope.checkboxModel;
+        planConfig.users = appConfig.users;
       }
     });
   }
@@ -79,3 +93,8 @@ app.directive("planitem", function(){
 });
 
 
+app.directive("operationitem", function(){
+  return {
+    templateUrl: '../template/operation.html'
+  };
+});

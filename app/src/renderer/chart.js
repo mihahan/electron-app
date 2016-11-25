@@ -14,6 +14,29 @@ module.exports.create = function(data, userName, weekdays, id) {
   }
   Chart.defaults.global.defaultFontColor = '#333';
 
+// var data = {
+//     labels: [
+//     ],
+//     datasets: [
+//         {
+//             data: [300, 50, 100],
+//             backgroundColor: [
+//                 "#FF6384",
+//                 "#36A2EB",
+//                 "#FFCE56"
+//             ],
+//             hoverBackgroundColor: [
+//                 "#FF6384",
+//                 "#36A2EB",
+//                 "#FFCE56"
+//             ]
+//         }]
+// };
+// var myDoughnutChart = new Chart(ctx, {
+//     type: 'doughnut',
+//     data: data
+// });
+
   var myChart = new Chart(ctx, {
       type: 'bar',
       data: {

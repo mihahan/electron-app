@@ -8,29 +8,10 @@ var dateUtils = require('date-utils'),
 
 var dateFormat = require('../renderer/dateFormat.js');
 
-var app = angular.module('myModule');
+var app = angular.module('myApp.config', ['myApp', 'ngMaterial', 'ngMessages']);
 
 app.value('appConfig', {
-  // Flag
-  'TaskReqFlag': false,
-  'ReportReqFlag': false,
-  'WeeklyRepFlag': false,
-  'MonthlyRepFlag': false,
-
   // Datas
-  'TaskDatas': [],
-  'ReportDatas': {
-    'sum': 0,
-    'sumPlan': 0,
-    'sumTmrw': 0,
-    'data': null,
-    'dataTmrw': null
-  },
-  'PlanDatas': {},
-  // 'MyselfPlanDatas': [],
-  // 'UsersPlanDatas': [],
-  'WeeklyRepDatas': [],
-  'MonthlyRepDatas': [],
   'userData': null,
   'users': ['b-tomomi.b.shimada', 'b-tatsuhiro.a.abe', 'b-hitomi.a.parsi'],
 
@@ -40,15 +21,30 @@ app.value('appConfig', {
 
   // get loclstrage
   'userData': JSON.parse(localStorage.getItem('userData'))
-
-
 });
 
+app.value('taskConfig', {
+  'flag': false,
+  'datas': []
+});
 
 app.value('reportConfig', {
+  'flag': false,
+  'datas': {
+    'sum': 0,
+    'sumPlan': 0,
+    'sumTmrw': 0,
+    'data': null,
+    'dataTmrw': null
+  },
   'reportName': 'Weekly',
   'start': '',
-  'end': ''
+  'end': '',
+  'WeeklyRepFlag': false,
+  'MonthlyRepFlag': false,
+
+  'WeeklyRepDatas': [],
+  'MonthlyRepDatas': [],
 });
 
 app.value('planConfig', {
@@ -61,10 +57,24 @@ app.value('planConfig', {
   'UsersDatas': []
 });
 
+app.value('operationConfig', {
+  'flag': false,
+  'users': ['b-tomomi.b.shimada', 'b-tatsuhiro.a.abe', 'b-hitomi.a.parsi'],
+  'date': new Date(),
+  'datas': [],
+  'sum': []
+});
 
 
-app.run(['$rootScope','appConfig', 'planConfig', function ($rootScope, appConfig, planConfig) {
+app.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('pink')
+    .accentPalette('orange');
+});
+
+app.run(['$rootScope', 'appConfig', 'planConfig', 'reportConfig', function ($rootScope, appConfig, planConfig, reportConfig) {
   appConfig.formattedToday = {
+    Y: appConfig.date.toFormat("YYYY"),
     M: appConfig.date.toFormat("MM"),
     YM: appConfig.date.toFormat("YYYY-MM"),
     YMD: appConfig.date.toFormat("YYYY-MM-DD"),
@@ -82,4 +92,28 @@ app.run(['$rootScope','appConfig', 'planConfig', function ($rootScope, appConfig
     shell.openExternal($(e.target).data('href'));
     return false;
   }
+  $rootScope.loading = function() {
+    $('.contents-nodata').removeClass('active');
+  }
+
+  $rootScope.loaded = function() {
+    $('.contents-load').addClass('disabled');
+    $('.contents-nodata').removeClass('active');
+    $('.contents-view').addClass('active');
+  }
+  $rootScope.nodata = function() {
+    $('.contents-load').addClass('disabled');
+    $('.contents-nodata').addClass('active');
+  }
+  $rootScope.resetDairyreport = function() {
+    reportConfig.flag = false;
+    reportConfig.datas = {
+      'sum': 0,
+      'sumPlan': 0,
+      'sumTmrw': 0,
+      'data': null,
+      'dataTmrw': null
+    };
+  }
+
 }]);

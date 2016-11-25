@@ -3,24 +3,17 @@
 
 #view-report {
   position: relative;
-  padding: 20px 0 60px;
-  background: $bg_color_light;
   h2 {
     display: block;
-    margin: 10px 0 5px;
-    font-size: 13px;
+    margin: $mg_01 0;
+    font-size: $font_size_normal;
     font-weight: bold;
-  }
-
-  nav {
-    @include contents_nav();
-    bottom: 0;
   }
   table {
     thead {
       th, td {
-        padding: 5px;
-        font-size: 10px;
+        padding: $pd_01;
+        font-size: $font_size_xsmall;
       }
     }
     th, td {
@@ -45,12 +38,12 @@
   #copy_button {
     display: block;
     width: 500px;
-    margin: 10px auto;
-    padding: 5px 20px;
+    margin: 0 auto;
+    padding: $pd_01 $pd_01*2;
     color: $font_color_light;
-    border-radius: 6px;
+    border-radius: $radius;
     background-color: $link_color;
-    font-size: 18px;
+    font-size: $font_size_medium;
     cursor: pointer;
     span {
       font-weight: bold;
@@ -58,7 +51,7 @@
   }
 
   #contents-report {
-    padding: 10px;
+    padding: $mg_inner;
   }
 
 
@@ -67,24 +60,14 @@
 
 
 
-
-
 #view-report--weekly {
-  padding: 20px;
-  background: $bg_color_light;
   h2 {
     display: block;
-    margin: 10px 0 5px;
-    font-size: 13px;
+    margin-bottom: $mg_01;
+    font-size: $font_size_normal;
     font-weight: bold;
   }
   table {
-    thead {
-      th, td {
-        padding: 5px;
-        font-size: 10px;
-      }
-    }
     th, td {
       word-break: break-all;
       &:nth-child(1) {

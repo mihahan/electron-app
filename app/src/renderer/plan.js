@@ -1,5 +1,7 @@
-module.exports.data = function($scope, $rootScope, appConfig, planConfig, jiraUtil, dateFormat, loaded) {
-console.log(planConfig)
+
+var $ = require('jquery');
+
+module.exports.data = function($scope, $rootScope, appConfig, planConfig, jiraUtil, dateFormat) {
   var count = 0;
 
   var users = $scope.checkboxModel;
@@ -9,7 +11,7 @@ console.log(planConfig)
 
     if (planConfig[planConfig.name + 'Flag']) {
       $scope.data = planConfig[planConfig.name + 'Datas'];
-      loaded();
+      $rootScope.loaded();
     } else {
       jiraUtil.get(requestUrl, appConfig.userData, function (err, resp, body) {
         if (err) {
@@ -82,7 +84,7 @@ console.log(planConfig)
 
             $scope.$apply(function () {
               $scope.data = planConfig[planConfig.name + 'Datas'];
-              loaded();
+              $rootScope.loaded();
             });
           }
           planConfig[planConfig.name + 'Flag'] = true

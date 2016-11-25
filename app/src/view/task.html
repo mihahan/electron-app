@@ -6,44 +6,55 @@
 <title>JIRA Tools</title>
 </head>
 <body>
-  <div class="contents-load"></div>
-  <div class="contents-error">
-    errorです。
-  </div>
 
-    <section id="view-task" class="contents-view">
-      <div id="input">
-        <table class="data_table" id="table-head">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Project</th>
-              <th>Spent Time</th>
-              <th>Comment</th>
-              <th>Submit</th>
-            </tr>
-          </thead>
-        </table>
-        <form ng-repeat="(key, value) in data">
-          <table class="data_table">
-            <tr>
-              <td>
-<!--                 <span class="icon-other" ng-if="value.icon == 'other'"></span>
-                <span class="icon-browser" ng-if="value.icon == 'issue'"></span> -->
-              </td>
-              <td>
-                <a class="block" data-href="https://jira.rakuten-it.com/jira/browse/{{value.key}}" ng-click="openLink($event)">{{value.fields.summary}}</a>
-                <span class="icon-user" ng-if="value.reporter">{{value.reporter}}</span>
-                <span class="icon-calendar" ng-if="value.term">{{value.term}}</span>
-              </td>
-              <td><input type="text" placeholder="3.5h" name="{{value.key}}-time"></td>
-              <td><input type="text" placeholder="Design, modify etc" name="{{value.key}}-comment"></td>
-              <td><button class="btn-submit" data-key="{{value.key}}" ng-click="postTimeSpent($event)"><span class="text">送信</span></button></td>
-            </tr>
-          </table>
-        </form>
-      </div>
-    </section>
+  <div layout="column" layout-fill class="subheaderdemoBasicUsage" id="view-task">
+    <div class="contents-load"></div>
+    <div class="contents-error">
+      errorです。
+    </div>
+    <md-content>
+        <section class="contents-view">
 
+          <md-subheader>
+            <table class="data_table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Project</th>
+                  <th>Status</th>
+                  <th>Spent Time</th>
+                  <th>Comment</th>
+                  <th>Submit</th>
+                  <th>Plan</th>
+                </tr>
+              </thead>
+            </table>
+          </md-subheader>
+          <form ng-repeat="(key, value) in data | orderBy:'icon'">
+            <table class="data_table">
+              <tr>
+                <td>
+                  <span class="icon-other" ng-if="value.icon == 'other'"></span>
+                  <span class="icon-browser" ng-if="value.icon == 'issue'"></span>
+                </td>
+                <td>
+                  <a class="block" data-href="https://jira.rakuten-it.com/jira/browse/{{value.key}}" ng-click="openLink($event)">{{value.summary}}</a>
+                  <span class="icon-user" ng-if="value.reporter">{{value.reporter}}</span>
+                  <span class="icon-calendar" ng-if="value.term">{{value.term}}</span>
+                </td>
+                <td>
+                  {{value.status}}
+                  <a ng-click="changeStatuModal($event)" data-key="{{value.key}}" data-summary="{{value.summary}}" data-status="{{value.status}}"><br>Change<br>Status</a></td>
+                <td><input type="text" placeholder="3.5h" name="{{value.key}}-time"></td>
+                <td><input type="text" placeholder="Design, modify etc" name="{{value.key}}-comment"></td>
+                <td><button class="btn-submit" data-key="{{value.key}}" ng-click="postTimeSpent($event)"><span class="text">送信</span></button></td>
+                <td>
+                  <a ng-click="inputPlanModal($event)" data-key="{{value.key}}" data-summary="{{value.summary}}" data-id="{{value.id}}" data-status="{{value.status}}">input<br>Plan</a></td>
+              </tr>
+            </table>
+          </form>
+        </section>
+    </md-content>
+</div>
 </body>
 </html>

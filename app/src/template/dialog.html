@@ -1,0 +1,19 @@
+
+<div class="dialog">
+  <div class="title">{{key}}: {{summary}}</div>
+
+  <form ng-submit="submit($event)">
+    <div class="area-input">
+    Status is {{status}}.
+      <label for="status"> Change status for</label>
+      <select name="status">
+        <option value="5">resolve</option>
+        <option value="2">close</option>
+        <option value="711">pending</option>
+      </select>
+    </div>
+    <div class="area-btn">
+      <button>submit</button>
+    </div>
+  </form>
+</div>
